@@ -51,7 +51,6 @@ Trang web Portfolio cá nhân hiện đại, chuyên nghiệp dành cho Thực t
 
 ## ✉️ Thông tin liên hệ
 - **Email**: linhnguyen02082003@gmail.com
-- **Số điện thoại**: 0915517300
 - **Facebook**: [Nguyễn Linh](https://www.facebook.com/linh.nem.2024)
 - **LinkedIn**: [Nguyễn Linh](https://www.linkedin.com/in/nguy%E1%BB%85n-linh-07794b218/)
 
