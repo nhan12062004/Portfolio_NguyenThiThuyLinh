@@ -307,7 +307,7 @@ export default function App() {
               <h2 className={`text-sm uppercase tracking-[0.3em] mb-6 font-semibold ${
                 isDarkMode ? "text-pink-400" : "text-pink-300"
               }`}>
-                Thực tập sinh Marketing
+                Content &amp; Social Media Marketing
               </h2>
               <motion.h1 
                 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-[1.1]"
@@ -318,8 +318,8 @@ export default function App() {
               <p className={`text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed ${
                 isDarkMode ? "text-gray-400" : "text-gray-500"
               }`}>
-                Mong muốn áp dụng kiến thức Quản trị kinh doanh và kinh nghiệm thực tiễn 
-                trong lĩnh vực Content & Social Media Marketing để tạo ra giá trị bền vững cho thương hiệu.
+                Tôi kết hợp nền tảng Quản trị kinh doanh với kinh nghiệm thực tiễn trong lĩnh vực
+                Content &amp; Social Media Marketing để tạo ra giá trị bền vững cho thương hiệu.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <a 
@@ -378,7 +378,7 @@ export default function App() {
                   isDarkMode ? "text-gray-300" : "text-gray-600"
                 }`}>
                   <p>
-                    Tôi là sinh viên năm 4 ngành Quản trị kinh doanh tại Đại học Kinh tế - Kỹ thuật Công nghiệp Hà Nội. Với tinh thần ham học hỏi và khả năng nắm bắt xu hướng nhanh, tôi luôn nỗ lực hoàn thiện bản thân trong lĩnh vực Marketing.
+                    Tôi đã tốt nghiệp ngành Quản trị kinh doanh tại Đại học Kinh tế - Kỹ thuật Công nghiệp Hà Nội. Với tinh thần ham học hỏi và khả năng nắm bắt xu hướng nhanh, tôi luôn nỗ lực hoàn thiện bản thân trong lĩnh vực Marketing.
                   </p>
                   
                   <div className="space-y-4 pt-4">
@@ -391,7 +391,7 @@ export default function App() {
                         <p className="text-sm opacity-80">ĐH Kinh tế - Kỹ thuật Công nghiệp Hà Nội (2022 - 2026)</p>
                         <p className="text-sm opacity-80">Ngành: Quản trị kinh doanh</p>
                         <p className="text-sm opacity-80">Chuyên ngành: Quản trị Tổng hợp</p>
-                        <p className="text-sm font-semibold text-[#ff4d8d]">GPA hiện tại: 3.3/4</p>
+                        <p className="text-sm font-semibold text-[#ff4d8d]">Đã tốt nghiệp năm 2026</p>
                       </div>
                     </div>
                     

@@ -1,9 +1,9 @@
 # Portfolio - Nguyễn Thị Thùy Linh 🌟
 
-Trang web Portfolio cá nhân hiện đại, chuyên nghiệp dành cho Thực tập sinh Marketing. Được xây dựng với hiệu ứng mượt mà và giao diện tối ưu.
+Trang web Portfolio cá nhân của Nguyễn Thị Thùy Linh, tập trung vào Content & Social Media Marketing. Được xây dựng với hiệu ứng mượt mà và giao diện tối ưu.
 
 ## 🚀 Giới thiệu
-Đây là dự án Portfolio cá nhân của **Nguyễn Thị Thùy Linh**, sinh viên năm 4 ngành Quản trị kinh doanh. Trang web được thiết kế để giới thiệu bản thân, các kỹ năng chuyên môn trong lĩnh vực Marketing (Content, Social Media, Video Production) và các kinh nghiệm làm việc thực tế.
+Đây là dự án Portfolio cá nhân của **Nguyễn Thị Thùy Linh**, người đã tốt nghiệp ngành Quản trị kinh doanh. Trang web được thiết kế để giới thiệu bản thân, các kỹ năng chuyên môn trong lĩnh vực Marketing (Content, Social Media, Video Production) và các kinh nghiệm làm việc thực tế.
 
 ## ✨ Tính năng nổi bật
 - **🌓 Chế độ Sáng/Tối (Dark Mode)**: Tự động chuyển đổi giao diện theo sở thích người dùng.
