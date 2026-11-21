@@ -90,6 +90,7 @@ const activities = [
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -114,6 +115,17 @@ export default function App() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isMobileMenuOpen]);
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
@@ -204,11 +216,58 @@ export default function App() {
             </button>
           </div>
 
-          <button className="md:hidden p-2">
-            <div className={`w-6 h-0.5 mb-1.5 ${isDarkMode ? "bg-white" : "bg-black"}`}></div>
-            <div className={`w-6 h-0.5 ${isDarkMode ? "bg-white" : "bg-black"}`}></div>
+          <button
+            type="button"
+            className="md:hidden w-11 h-11 flex flex-col items-center justify-center gap-1.5"
+            onClick={() => setIsMobileMenuOpen(open => !open)}
+            aria-label={isMobileMenuOpen ? "Đóng menu" : "Mở menu"}
+            aria-controls={isMobileMenuOpen ? "mobile-menu" : undefined}
+            aria-expanded={isMobileMenuOpen}
+          >
+            <span className={`w-6 h-0.5 transition-transform duration-200 ${isDarkMode ? "bg-white" : "bg-black"} ${isMobileMenuOpen ? "translate-y-1 rotate-45" : ""}`} />
+            <span className={`w-6 h-0.5 transition-transform duration-200 ${isDarkMode ? "bg-white" : "bg-black"} ${isMobileMenuOpen ? "-translate-y-1 -rotate-45" : ""}`} />
           </button>
         </div>
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              id="mobile-menu"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={`md:hidden overflow-hidden border-t ${isDarkMode ? "border-gray-800" : "border-pink-100"}`}
+            >
+              <div className="px-6 py-4 space-y-1">
+                {navItems.map(({ name, href, icon: Icon }) => (
+                  <a
+                    key={href}
+                    href={href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                      activeSection === href.slice(1)
+                        ? isDarkMode ? "bg-gray-800 text-pink-400" : "bg-pink-50 text-[#ff4d8d]"
+                        : isDarkMode ? "text-gray-300 hover:bg-gray-800" : "text-gray-600 hover:bg-pink-50"
+                    }`}
+                  >
+                    <Icon size={18} />
+                    {name}
+                  </a>
+                ))}
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                    isDarkMode ? "text-gray-300 hover:bg-gray-800" : "text-gray-600 hover:bg-pink-50"
+                  }`}
+                >
+                  {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+                  {isDarkMode ? "Chế độ sáng" : "Chế độ tối"}
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Sections */}
