@@ -30,7 +30,7 @@ import {
   AlertCircle, 
   Loader2
 } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { db } from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
@@ -91,6 +91,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pendingMobileSection = useRef<string | null>(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -128,6 +129,18 @@ export default function App() {
   }, [isMobileMenuOpen]);
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
+
+  const handleMobileNavClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault();
+    const sectionId = href.slice(1);
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    pendingMobileSection.current = sectionId;
+    setIsMobileMenuOpen(false);
+    setActiveSection(sectionId);
+    window.history.pushState(null, "", href);
+  };
 
   const [formData, setFormData] = useState({
     name: "",
@@ -228,7 +241,18 @@ export default function App() {
             <span className={`w-6 h-0.5 transition-transform duration-200 ${isDarkMode ? "bg-white" : "bg-black"} ${isMobileMenuOpen ? "-translate-y-1 -rotate-45" : ""}`} />
           </button>
         </div>
-        <AnimatePresence>
+        <AnimatePresence onExitComplete={() => {
+          const sectionId = pendingMobileSection.current;
+          if (!sectionId) return;
+          pendingMobileSection.current = null;
+          const section = document.getElementById(sectionId);
+          if (section) {
+            window.scrollTo({
+              top: section.getBoundingClientRect().top + window.scrollY - 80,
+              behavior: "instant"
+            });
+          }
+        }}>
           {isMobileMenuOpen && (
             <motion.div
               id="mobile-menu"
@@ -243,7 +267,7 @@ export default function App() {
                   <a
                     key={href}
                     href={href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(event) => handleMobileNavClick(event, href)}
                     className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
                       activeSection === href.slice(1)
                         ? isDarkMode ? "bg-gray-800 text-pink-400" : "bg-pink-50 text-[#ff4d8d]"
